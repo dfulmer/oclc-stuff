@@ -33,6 +33,7 @@ start container
 docker-compose up -d
 ```
 
+## Using Individual Programs
 
 ### Download cross reference file
 open_file.rb
@@ -99,3 +100,15 @@ See above: open_file.rb, which writes to output.txt in the /out directory.
 
 ### Process $a into XML
 See above: update_alma.rb
+
+
+## Bringing it all together
+
+### Flow for all OCLC cross references
+oclc_cross_ref_process.rb
+Opens file example.txt (or whatever file name you use when running the program), in directory /in, and gets one mmsid and one OCLC number per line.
+Prints out one line in /out/output.txt per each line from /in/example.txt, with a note about what happened.
+```
+docker-compose run --rm app bundle exec ruby oclc_cross_ref_process.rb example.txt output.txt
+  => look in out/output.txt for results.
+```
