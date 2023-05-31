@@ -1,0 +1,43 @@
+{
+  "mms_id": "99187608627106381",
+  "record_format": "marc21",
+  "linked_record_id": {},
+  "title": "Le ruban tricolore : un lien politique /",
+  "author": "Wahnich, Sophie,",
+  "isbn": "9782227499195",
+  "network_number": [
+    "(OCoLC)1354771677",
+    "(Fr-PaAMA)AAL03350414-0001",
+    "(Amalivre)ama AAL03350414-0001",
+    "(OCoLC)1329221766"
+  ],
+  "place_of_publication": "Montrouge :",
+  "date_of_publication": "[2022]",
+  "publisher_const": "Bayard,",
+  "holdings": {
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381/holdings"
+  },
+  "created_by": "System",
+  "created_date": "2022-07-06Z",
+  "last_modified_by": "System",
+  "last_modified_date": "2023-03-03Z",
+  "suppress_from_publishing": "false",
+  "suppress_from_external_search": "false",
+  "suppress_from_metadoor": "false",
+  "rank": "87",
+  "sync_with_oclc": "BIBS",
+  "sync_with_libraries_australia": "NONE",
+  "originating_system": "OTHER",
+  "originating_system_id": "AAL03350414-0001",
+  "cataloging_level": {
+    "value": "00",
+    "desc": "Default Level"
+  },
+  "brief_level": {
+    "value": "06",
+    "desc": "06"
+  },
+  "anies": [
+    "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>03576cam a2200409 i 4500</leader><controlfield tag=\"001\">99187608627106381</controlfield><controlfield tag=\"005\">20230303010146.0</controlfield><controlfield tag=\"008\">210902t20222022fr a     b    000 0 fre d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">9782227499195</subfield><subfield code=\"q\">(paperback)</subfield><subfield code=\"c\">17,90 EUR</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(Amalivre)ama AAL03350414-0001</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(Fr-PaAMA)AAL03350414-0001</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)1354771677</subfield><subfield code=\"z\">(OCoLC)1329221766</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">Fr-PaAMA</subfield><subfield code=\"b\">eng</subfield><subfield code=\"e\">rda</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"043\"><subfield code=\"a\">e-fr---</subfield></datafield><datafield ind1=\" \" ind2=\"4\" tag=\"050\"><subfield code=\"a\">CR542</subfield><subfield code=\"b\">.W34 2022</subfield></datafield><datafield ind1=\"1\" ind2=\"4\" tag=\"082\"><subfield code=\"a\">944</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Wahnich, Sophie,</subfield><subfield code=\"e\">author.</subfield></datafield><datafield ind1=\"1\" ind2=\"3\" tag=\"245\"><subfield code=\"a\">Le ruban tricolore :</subfield><subfield code=\"b\">un lien politique /</subfield><subfield code=\"c\">Sophie Wahnich.</subfield></datafield><datafield ind1=\" \" ind2=\"1\" tag=\"264\"><subfield code=\"a\">Montrouge :</subfield><subfield code=\"b\">Bayard,</subfield><subfield code=\"c\">[2022]</subfield></datafield><datafield ind1=\" \" ind2=\"4\" tag=\"264\"><subfield code=\"c\">©2022</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">141 pages :</subfield><subfield code=\"b\">illustrations (chiefly color) ;</subfield><subfield code=\"c\">18 cm.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">text</subfield><subfield code=\"b\">txt</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"337\"><subfield code=\"a\">unmediated</subfield><subfield code=\"b\">n</subfield><subfield code=\"2\">rdamedia</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"338\"><subfield code=\"a\">volume</subfield><subfield code=\"b\">nc</subfield><subfield code=\"2\">rdacarrier</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"490\"><subfield code=\"a\">Le rayon des curiosités</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"504\"><subfield code=\"a\">Includes bibliographical references (pages 133-137).</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"505\"><subfield code=\"t\"> Avant-propos. Quel est ce ruban que je ne saurais voir ? -- </subfield><subfield code=\"t\"> Le ruban tricolore révolutionnaire m'accompagne depuis longtemps... -- </subfield><subfield code=\"t\"> Rubans tricolores somptueux et précieux -- </subfield><subfield code=\"t\"> Trois rubans pour trois couleurs, trois couleurs pour un ruban -- </subfield><subfield code=\"t\"> Monsieur Bailly -- </subfield><subfield code=\"t\"> Les trois couleurs, ouvroir de récits potentiels -- </subfield><subfield code=\"t\"> Une belle opération de propagande monarchique -- </subfield><subfield code=\"t\"> Quand les trois couleurs sont profanées -- </subfield><subfield code=\"t\"> L'économie du symbolique -- </subfield><subfield code=\"t\"> La marchande de cocardes et de rubans -- </subfield><subfield code=\"t\"> Rubans à vendre ! -- </subfield><subfield code=\"t\"> Un article de Paris symbolique et politique : les genres du ruban -- </subfield><subfield code=\"t\"> Le ruban comme éloge de la simplicité -- </subfield><subfield code=\"t\"> Le ruban fait lien -- </subfield><subfield code=\"t\"> Une religion civile -- </subfield><subfield code=\"t\"> Une justice locale qui unit la nation -- </subfield><subfield code=\"t\"> Dessiner l'espace -- </subfield><subfield code=\"t\"> Un ruban sacré -- </subfield><subfield code=\"t\"> Le décor patriotique -- </subfield><subfield code=\"t\"> Le ruban des étrangers, logique du regard et logique des liens -- </subfield><subfield code=\"t\"> Un signe allégorique comme sauf-conduit -- </subfield><subfield code=\"t\"> Langage des signes, signalétique, langage verbal : b quête du sensible authentique -- </subfield><subfield code=\"t\"> Retournement des signes, la surveillance défiante -- </subfield><subfield code=\"t\"> Devenirs du ruban tricolore -- </subfield><subfield code=\"t\"> Le ruban tricolore a-t-il disparu ? -- </subfield><subfield code=\"t\"> Une raideur officielle en polyester -- </subfield><subfield code=\"t\"> Esprit rubanier, où es tu ?</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"520\"><subfield code=\"a\"> \"Le ruban tricolore : un petit morceau de tissu et trois couleurs qui en disent long sur notre histoire. Dans ce texte original et passionnant, Sophie Wahnich nous propose de découvrir qu'au-delà des représentations erronées que nous pouvons en avoir, ce ruban est, depuis le XVIIIe siècle, bien autre chose qu'un simple objet décoratif, mais le signe de ce qui relie les citoyens, les corps, les lieux. Joyeux, coloré, il va représenter au fil des ans le sens politique d'une société de solidarité et devenir le symbole de l'art de \"faire société\" et d'unir.\"--Page 4 of cover.</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"545\"><subfield code=\"a\"> Sophie Wahnich est directrice de recherche première classe en science politique au CNRS. Spécialiste de la Révolution française, elle travaille plus spécifiquement sur les émotions révolutionnaires. Elle a notamment publié : La liberté ou la mort, essai sur la terreur et le terrorisme, (La Fabrique, 2003), La longue patience du peuple, 1792, naissance de la République, (Payot, 2oo8), La Révolution française n'est pas un mythe, (Payot, 2017).</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Emblems, National</subfield><subfield code=\"z\">France</subfield><subfield code=\"x\">History</subfield><subfield code=\"y\">18th century.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"651\"><subfield code=\"a\">France</subfield><subfield code=\"x\">History</subfield><subfield code=\"y\">Revolution, 1789-1799.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"830\"><subfield code=\"a\">Rayon des curiosités</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"929\"><subfield code=\"a\">HATCH</subfield><subfield code=\"b\">GRAD</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"937\"><subfield code=\"a\">3350414</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"955\"><subfield code=\"p\">39015097164738</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"980\"><subfield code=\"a\">20220616</subfield><subfield code=\"b\">1997</subfield><subfield code=\"e\">1997</subfield><subfield code=\"f\">3350414</subfield><subfield code=\"g\">1</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"981\"><subfield code=\"b\">FRANC</subfield></datafield></record>"
+  ]
+}
