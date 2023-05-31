@@ -21,18 +21,17 @@ mmsid = ARGV.shift
 
 # Retrieve a bib record from Alma by MMS ID, add the 035 field(s), and update the Alma bib record.
 # Connect to the Alma API
-connection = Faraday.new(
-)
+connection = Faraday.new
 
 # Retrieve the bib record with the MMS ID given
 response = connection.get do |req|
   req.url "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mmsid}?view=full&expand=None"
-  req.headers[:content_type] = 'application/json'
-  req.headers[:Accept] = 'application/json'
+  req.headers[:content_type] = "application/json"
+  req.headers[:Accept] = "application/json"
   req.headers[:Authorization] = "apikey #{apikey}"
 end
 # Store the bib record as retrieved from Alma in 'bibrecord'
-bibrecord = JSON.parse(response.body)['anies'].first
+bibrecord = JSON.parse(response.body)["anies"].first
 
 # Print out the bib record
 # puts "from alma"
@@ -51,7 +50,7 @@ reader.each do |record|
       subfieldstodelete.push(field)
     end
   end
-  #puts subfieldstodelete
+  # puts subfieldstodelete
 
   subfieldstodelete.each do |deleteme|
     record.fields.delete(deleteme)
@@ -59,7 +58,7 @@ reader.each do |record|
   ##
 
   # Create a new 035 field
-  newfield = MARC::DataField.new( '035', ' ', ' ')
+  newfield = MARC::DataField.new("035", " ", " ")
 
   # Retrieve the new subfields, and append them to the new 035 field
   ARGV.each do |subfields|
@@ -87,8 +86,8 @@ xmlrec = "<bib>" + xmlrec + "</bib>"
 # Send the edited record in to the Alma API to complete the update
 response2 = connection.put do |req|
   req.url "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mmsid}?validate=false&override_warning=true&override_lock=true&stale_version_check=false&check_match=false"
-  req.headers[:content_type] = 'application/xml'
-  req.headers[:Accept] = 'application/json'
+  req.headers[:content_type] = "application/xml"
+  req.headers[:Accept] = "application/json"
   req.headers[:Authorization] = "apikey #{apikey}"
   req.body = xmlrec
 end
@@ -102,4 +101,4 @@ end
 # puts JSON.parse(response2.body)['anies'].first
 
 # Did it work?
-response2.status == 200 ? (puts "Record updated") : (puts "Record not updated")
+(response2.status == 200) ? (puts "Record updated") : (puts "Record not updated")

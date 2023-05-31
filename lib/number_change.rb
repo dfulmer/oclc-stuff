@@ -11,26 +11,25 @@ require "stringio"
 # check to see if the OCLC number from the Alma 035 is in the 019 of the Worldcat record with the OCLC number from the cross reference file.
 
 class Numberchange
-  def initialize(almaoclcarray, fileoclc) 
-      @almaoclcnumber = almaoclcarray.shift
-      @fileoclc = fileoclc 
-  end 
-   
+  def initialize(almaoclcarray, fileoclc)
+    @almaoclcnumber = almaoclcarray.shift
+    @fileoclc = fileoclc
+  end
+
   def inohonenine
     wskey = ENV.fetch("WORLDCAT_API_KEY")
 
     # Connect to the Worldcat API
-    connection = Faraday.new(
-    )
+    connection = Faraday.new
 
     # Retrieve the OCLC record with the cross reference file OCLC number given
     response = connection.get do |req|
       req.url "https://worldcat.org/webservices/catalog/content/#{@fileoclc}?servicelevel=full&wskey=#{wskey}"
-      req.headers[:content_type] = 'application/json'
-      req.headers[:Accept] = 'application/json'
+      req.headers[:content_type] = "application/json"
+      req.headers[:Accept] = "application/json"
     end
-    #puts JSON.pretty_generate(JSON.parse(response2.body))
-    #puts response.body
+    # puts JSON.pretty_generate(JSON.parse(response2.body))
+    # puts response.body
 
     # Just look for 019 field (which is not repeatable) and get the a subfields, however many there are.
     reader = MARC::XMLReader.new(StringIO.new(response.body))
@@ -39,7 +38,7 @@ class Numberchange
     reader.each do |record|
       record.fields("019").each do |y|
         y.subfields.each do |z|
-          subfieldas.push(z.value) 
+          subfieldas.push(z.value)
         end
       end
 

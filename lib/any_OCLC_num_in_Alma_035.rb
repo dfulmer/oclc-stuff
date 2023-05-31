@@ -11,16 +11,15 @@ class Anyoclcnuminalma
 
   def anyoclc
     apikey = ENV.fetch("ALMA_API_KEY")
-    connection = Faraday.new(
-    )
-      
+    connection = Faraday.new
+
     response = connection.get do |req|
       req.url "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{@mmsid}?view=full&expand=None"
-      req.headers[:content_type] = 'application/json'
-      req.headers[:Accept] = 'application/json'
+      req.headers[:content_type] = "application/json"
+      req.headers[:Accept] = "application/json"
       req.headers[:Authorization] = "apikey #{apikey}"
     end
-    bibrecord = JSON.parse(response.body)['anies'].first
+    bibrecord = JSON.parse(response.body)["anies"].first
     reader = MARC::XMLReader.new(StringIO.new(bibrecord))
 
     oclcnumbers = []
@@ -40,7 +39,7 @@ class Anyoclcnuminalma
     if oclcnumbers.length > 0
       oclcnumbers
     else
-      'No OCLC numbers'
+      "No OCLC numbers"
     end
   end
 end
