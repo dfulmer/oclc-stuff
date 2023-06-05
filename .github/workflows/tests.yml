@@ -19,9 +19,7 @@ jobs:
         with:
           ruby-version: 3.2
           bundler-cache: true
-      - name: echo tests
-        run: echo "tests!"
       #- name: Run linter for Ruby
         #run: bundle exec standardrb
-      #- name: Run tests
-        #run: bundle exec rspec
+      - name: Run tests
+        run: bundle exec rspec

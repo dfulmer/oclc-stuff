@@ -4,3 +4,7 @@
 .cache
 .bundle
 .env
+coverage/
+out/*
+!out/.keep
+.byebug_history

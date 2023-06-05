@@ -7,12 +7,12 @@ input_file = ARGV[0]
 
 linecount = 0
 
-File.open("out/#{output_file}", 'w') do |out|
-  File.open("in/#{input_file}", 'r').each_line do |line|
+File.open("out/#{output_file}", "w") do |out|
+  File.open("in/#{input_file}", "r").each_line do |line|
     line.chomp!
     linecount += 1
 
-    mmsid, oclcnum = line.split(/\t/)
+    mmsid, oclcnum = line.split("\t")
     mmsid.strip!
     oclcnum.strip!
 
