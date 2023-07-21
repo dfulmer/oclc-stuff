@@ -44,15 +44,13 @@ module OCLCProcessor
           out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\t#{updatealmaresult} with 035 $a only\n"
           # And go to next line
           next
-        else
-          # puts "keep going"
         end
 
         oclcnumbersfromalma = alma_bib.oclc_all
         # Same as file OCLC num?
         # 'oclcnum' is the cross reference file OCLC number, 'oclcnumbersfromalma' is an array of the numbers from Alma
         # Is the OCLC number in the array of OCLC numbers? Returns true if match, false if no match.
-        if oclcnumbersfromalma.include?(oclcnum) == true
+        if alma_bib.has_oclc?(oclcnum)
           # count and skip
           out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\tCount and skip\n"
           countandskipcount += 1

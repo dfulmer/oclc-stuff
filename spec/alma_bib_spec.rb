@@ -87,4 +87,15 @@ describe AlmaBib do
     end
   end
 
+  context "#has_oclc?" do
+    it "returns true if an a field is checked" do
+      expect(subject.has_oclc?(a_oclc)).to eq(true)
+    end
+    it "returns true if a z field is checked" do
+      expect(subject.has_oclc?(z_oclc)).to eq(true)
+    end
+    it "returns false if number doesn't match" do
+      expect(subject.has_oclc?("1235")).to eq(false)
+    end
+  end
 end

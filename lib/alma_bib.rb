@@ -34,6 +34,11 @@ class AlmaBib
    end
   end
 
+  #@param control_number [String] OCLC control number 
+  def has_oclc?(control_number)
+    oclc_all.include?(control_number)
+  end
+
   def no_oclc?
     oclc_all.empty?
   end
