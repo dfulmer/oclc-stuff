@@ -21,12 +21,16 @@ describe AlmaBib do
     described_class.new(@alma_bib)
   end
 
+  let (:a_oclc) { "1354771677" }
+
+  let (:z_oclc) { "1329221766" }
+
   let(:remove_a) {
-    @alma_bib["anies"].first.gsub!("(OCoLC)1354771677","(asdf)1234")
+    @alma_bib["anies"].first.gsub!("(OCoLC)#{a_oclc}","(asdf)1234")
   }
 
   let(:remove_z){
-    @alma_bib["anies"].first.gsub!("(OCoLC)1329221766","(asdf)1234")
+    @alma_bib["anies"].first.gsub!("(OCoLC)#{z_oclc}","(asdf)1234")
   }
 
   context "#no_oclc?" do
@@ -54,7 +58,7 @@ describe AlmaBib do
 
   context "#oclc_a" do
     it "returns an array of the 035 $a values" do
-      expect(subject.oclc_a).to eq(["1354771677"])
+      expect(subject.oclc_a).to eq([a_oclc])
     end
     it "is empty when there aren't any a's" do
       remove_a
@@ -64,7 +68,7 @@ describe AlmaBib do
 
   context "#oclc_z" do
     it "returns an array of the 035 $z values" do
-      expect(subject.oclc_z).to eq(["1329221766"])
+      expect(subject.oclc_z).to eq([z_oclc])
     end
     it "is empty when there aren't any z's" do
       remove_z
@@ -74,13 +78,13 @@ describe AlmaBib do
 
   context "#oclc_all" do
     it "returns an array of all oclc values in the record" do
-      expect(subject.oclc_all).to eq(["1354771677","1329221766"])
+      expect(subject.oclc_all).to eq([a_oclc,z_oclc])
     end
     it "is empty when there aren't any a's or z's" do
       remove_a
       remove_z
       expect(subject.oclc_all).to eq([])
     end
-
   end
+
 end
