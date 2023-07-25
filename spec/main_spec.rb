@@ -34,7 +34,7 @@ describe OCLCProcessor do
       stub_request(:put, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?validate=false&override_warning=true&override_lock=true&stale_version_check=false&check_match=false")
       `cp ./spec/fixtures/input_matches_a.txt ./in/input.test`
       OCLCProcessor.process("input.test","output.test")
-      expect(output).to include("with 035 $a only")
+      expect(output).to include("Record updated with 035 $a only")
     end
     it "handles xref oclc number that matches alma oclc 035a" do
       stub_alma_request

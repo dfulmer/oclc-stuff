@@ -1,10 +1,9 @@
 # Opens file example.txt, in directory /in, and gets one mmsid and one OCLC number per line
 # Suggestion: ruby oclc_cross_ref_process.rb example.txt output.txt
+require "faraday"
+require "marc"
 
-require_relative "./lib/look_up_mmsid"
-require_relative "./lib/any_OCLC_num_in_Alma_035"
-require_relative "./lib/number_change"
-require_relative "./lib/update_alma"
+#require_relative "./lib/update_alma"
 
 require_relative "./lib/alma_bib"
 require_relative "./lib/worldcat_bib"
@@ -40,7 +39,7 @@ module OCLCProcessor
         if alma_bib.no_oclc?
           # Process $a into XML
           # puts "process $a into xml"
-          updatealmaresult = Updatealma.new.updatenow(mmsid, oclcnum)
+          updatealmaresult = alma_bib.update_035(new_oclc_number: oclcnum)
           # puts updatealmaresult
           out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\t#{updatealmaresult} with 035 $a only\n"
           # And go to next line
@@ -69,7 +68,6 @@ module OCLCProcessor
         if worldcat_bib.match_any_019?(oclcnumbersfromalma)
         # Process $a and $z into xml
         # 'oclcnum' will be the $a, the $z(s) will be from the 'inohonenine' method: 'numberchangeresult'.
-          #updatealmaresult = Updatealma.new.updatenow(mmsid, oclcnum, number_change.subfield_as)
           updatealmaresult = alma_bib.update_035(new_oclc_number: oclcnum, numbers_from_019: worldcat_bib.tag_019) 
 
         # puts updatealmaresult

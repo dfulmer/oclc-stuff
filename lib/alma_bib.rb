@@ -115,7 +115,7 @@ class AlmaBib
   #
   # @param new_oclc_number [String] OCLC xref number
   # @param numbers_from_019 [Array] Array of old OCLC numbers from the 019
-  def update_035(new_oclc_number:, numbers_from_019:)
+  def update_035(new_oclc_number:, numbers_from_019: [])
     xml_record = "<bib>" + 
       generate_updated_bib(
         new_oclc_number: new_oclc_number, 
