@@ -7,6 +7,7 @@ require_relative "./lib/number_change"
 require_relative "./lib/update_alma"
 
 require_relative "./lib/alma_bib"
+require_relative "./lib/worldcat_bib"
 
 output_file = ARGV[1]
 input_file = ARGV[0]
@@ -63,26 +64,28 @@ module OCLCProcessor
         # Number change? (019 in Worldcat)
         # I think: take the OCLC number from the cross reference file, 'oclcnum', submit it to the Worldcat API and see if there are any 019 fields with the OCLC number from Alma?
         # 'oclcnumbersfromalma' is an array of oclc numbers from Alma (but I think there will only be one actual number), 'oclcnum' is the file OCLC number
-        number_change = Numberchange.new(oclcnumbersfromalma, oclcnum)
-        if !number_change.in_019?
-          # Report error
-          # puts "Report error: Number Change No"
-          out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\tNumber Change No; Report error\n"
-          # And go to next line
-          next
-        else
-          # puts "keep going"
-          # puts numberchangeresult
-        end
-
+        worldcat_bib = WorldcatBib.for(oclcnum)
+        
+        if worldcat_bib.match_any_019?(oclcnumbersfromalma)
         # Process $a and $z into xml
         # 'oclcnum' will be the $a, the $z(s) will be from the 'inohonenine' method: 'numberchangeresult'.
-        updatealmaresult = Updatealma.new.updatenow(mmsid, oclcnum, number_change.subfield_as)
+          #updatealmaresult = Updatealma.new.updatenow(mmsid, oclcnum, number_change.subfield_as)
+          updatealmaresult = alma_bib.update_035(new_oclc_number: oclcnum, numbers_from_019: worldcat_bib.tag_019) 
+
         # puts updatealmaresult
 
         # Add a line to the report with the updatealamresult.
         # puts "#{linecount}\t#{mmsid}\t#{oclcnum}\n"
-        out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\t#{updatealmaresult} with 035 $a and $z(s)\n"
+          out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\t#{updatealmaresult} with 035 $a and $z(s)\n"
+        else
+          # Report error
+          # puts "Report error: Number Change No"
+          out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\tNumber Change No; Report error\n"
+          # And go to next line
+          # puts "keep going"
+          # puts numberchangeresult
+        end
+
       end
     end
   end

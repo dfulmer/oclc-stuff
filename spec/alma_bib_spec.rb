@@ -98,4 +98,49 @@ describe AlmaBib do
       expect(subject.has_oclc?("1235")).to eq(false)
     end
   end
+
+  context "updating the alma record" do
+    #this is easier to test
+    let(:generate_updated_bib) {subject.generate_updated_bib(new_oclc_number: "12345",numbers_from_019: ["555"]) }
+    let(:update_035) {subject.update_035(new_oclc_number: "12345", numbers_from_019: ["555"]) }
+
+    context "#generate_updated_bib" do
+      it "has new OCLC number in the 035 a" do
+        record = generate_updated_bib
+        subfield_as_for_035 = record.fields("035").map{|x| x["a"]}
+        #the one oclc is the one in the params
+        expect(subfield_as_for_035.include?("(OCoLC)12345")).to eq(true)
+
+        #only one oclc
+        expect(subfield_as_for_035.find_all{|x| x.match?(/OCoLC/)}.count).to eq(1)
+
+
+        #expect(subfields_for_035.find_all{|x| x.match?(/OCoLC/) }.count).to eq(1)
+      end
+      it "has the 019s in the subfield z" do
+        record = generate_updated_bib
+        subfield_zs_for_035 = record.fields("035").map{|x| x["z"]}.compact
+        expect(subfield_zs_for_035.include?("(OCoLC)555")).to eq(true)
+        expect(subfield_zs_for_035.find_all{|x| x.match?(/OCoLC/)}.count).to eq(1)
+      end
+    end
+    context "#update_035" do
+      before(:each) do
+        @record = "<bib>" + generate_updated_bib.to_xml_string + "</bib>"
+        @req = stub_request(:put, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?check_match=false&override_lock=true&override_warning=true&stale_version_check=false&validate=false").with(body: @record)
+      end
+      it "sends updated MARC XML bib record to the appropriate API endpoint" do
+        update_035
+        expect(@req).to have_been_requested
+      end
+      it "returns 'Record updated' when status is 200" do
+        @req.to_return(status: 200)
+        expect(update_035).to eq("Record updated")
+      end
+      it "returns 'Record not updated' when status is not 200" do
+        @req.to_return(status: 500)
+        expect(update_035).to eq("Record not updated")
+      end
+    end
+  end
 end
