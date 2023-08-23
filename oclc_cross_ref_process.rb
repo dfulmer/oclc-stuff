@@ -51,7 +51,7 @@ module OCLCProcessor
         # Same as file OCLC num?
         # 'oclcnum' is the cross reference file OCLC number, 'oclcnumbersfromalma' is an array of the numbers from Alma
         # Is the OCLC number in the array of OCLC numbers? Returns true if match, false if no match.
-        if oclcnumbersfromalma.include?(["#{oclcnum}"]) == true
+        if oclcnumbersfromalma.include?(oclcnum) == true
           # count and skip
           out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\tCount and skip\n"
           countandskipcount += 1

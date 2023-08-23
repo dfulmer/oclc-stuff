@@ -36,6 +36,8 @@ class Anyoclcnuminalma
       end
     end
 
+    oclcnumbers.flatten!
+
     if oclcnumbers.length > 0
       oclcnumbers
     else
