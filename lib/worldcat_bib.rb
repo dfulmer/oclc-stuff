@@ -1,0 +1,42 @@
+class WorldcatBib
+  def self.for(oclc_num)
+    wskey = ENV.fetch("WORLDCAT_API_KEY")
+
+    # Connect to the Worldcat API
+    connection = Faraday.new
+
+    # Retrieve the OCLC record with the cross reference file OCLC number given
+    response = connection.get do |req|
+      req.url "https://worldcat.org/webservices/catalog/content/#{oclc_num}?servicelevel=full&wskey=#{wskey}"
+    end
+
+    # raising error because this really shouldn't happen. 
+    raise StandardError, "Failed to fetch bib from Worldcat" if response.status != 200
+
+    WorldcatBib.new(response.body)
+  end
+  
+  #@param bib [String] Marc xml string from Worldcat API
+  def initialize(bib)
+   for rec in MARC::XMLReader.new(StringIO.new(bib))
+     @bib = rec
+   end
+  end
+
+  #@return [Array] Array of all subfield values in 019
+  def tag_019
+    @bib.fields("019").map{|x| x.value }
+  end
+
+  # Checks if any numbers in the list match anything in the 019
+  #
+  #@param array [Array] Array of oclc numbers
+  #@return [Boolean]
+  def match_any_019?(array)
+    array.any? do |alma_oclc|
+      tag_019.any? do |worldcat_oclc|
+        alma_oclc == worldcat_oclc
+      end
+    end
+  end
+end

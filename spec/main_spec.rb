@@ -34,7 +34,7 @@ describe OCLCProcessor do
       stub_request(:put, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?validate=false&override_warning=true&override_lock=true&stale_version_check=false&check_match=false")
       `cp ./spec/fixtures/input_matches_a.txt ./in/input.test`
       OCLCProcessor.process("input.test","output.test")
-      expect(output).to include("with 035 $a only")
+      expect(output).to include("Record updated with 035 $a only")
     end
     it "handles xref oclc number that matches alma oclc 035a" do
       stub_alma_request
@@ -48,13 +48,6 @@ describe OCLCProcessor do
       worldcat_output = base_worldcat.gsub("1354771677", "999").gsub("1329221766","999")
       `cp ./spec/fixtures/input_non_match.txt ./in/input.test`
       stub_request(:get, "https://worldcat.org/webservices/catalog/content/9999999999?servicelevel=full&wskey=#{ENV.fetch("WORLDCAT_API_KEY")}").
-         with(                                                                                           
-           headers: {                                                                                    
-          'Accept'=>'application/json',
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Content-Type'=>'application/json',                                                            
-          'User-Agent'=>'Faraday v2.7.4'
-           }).
            to_return(status: 200, body: worldcat_output, headers: {})
       OCLCProcessor.process("input.test","output.test")
       expect(output).to include("Number Change No; Report error")
@@ -70,17 +63,10 @@ describe OCLCProcessor do
       stub_alma_request(body: alma_bib)
       `cp ./spec/fixtures/input_matches_a.txt ./in/input.test`
       stub_request(:get, "https://worldcat.org/webservices/catalog/content/1354771677?servicelevel=full&wskey=#{ENV.fetch("WORLDCAT_API_KEY")}").
-         with(                                                                                           
-           headers: {                                                                                    
-          'Accept'=>'application/json',
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Content-Type'=>'application/json',                                                            
-          'User-Agent'=>'Faraday v2.7.4'
-           }).
            to_return(status: 200, body: base_worldcat, headers: {})
            stub_request(:put, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?check_match=false&override_lock=true&override_warning=true&stale_version_check=false&validate=false")
       OCLCProcessor.process("input.test","output.test")
-      expect(output).to include("with 035 $a and $z(s)")
+      expect(output).to include("Record updated with 035 $a and $z(s)")
     end 
   end
   after(:each) do
