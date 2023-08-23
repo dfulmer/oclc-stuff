@@ -56,14 +56,9 @@ class AlmaBib
     oclc_subfield("a")
   end
 
-  # @return [Array] list of values in the 035 $z
-  def oclc_z
-    oclc_subfield("z")
-  end
- 
-  # @return [Array] list of values in the 035 $a and $z
+  # @return [Array] list of values in the 035 $a
   def oclc_all
-    oclc_a + oclc_z
+    oclc_a
   end
 
   # @param subfield [String] 035 subfield to get OCLC strings friom  
