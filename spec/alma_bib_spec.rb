@@ -71,10 +71,19 @@ describe AlmaBib do
     let(:generate_updated_bib) { subject.generate_updated_bib(new_oclc_number: "12345", numbers_from_019: ["555"]) }
     let(:update_035) { subject.update_035(new_oclc_number: "12345", numbers_from_019: ["555"]) }
 
+    def subfields_for_035(record, code)
+      record.fields("035").map do |field|
+          field.subfields.filter_map do |subfield|
+            subfield.value if subfield.code == code
+          end
+      end.flatten
+    end
+
     context "#generate_updated_bib" do
       it "has new OCLC number in the 035 a" do
         record = generate_updated_bib
-        subfield_as_for_035 = record.fields("035").map { |x| x["a"] }
+        subfield_as_for_035 = subfields_for_035(record, "a")
+       # record.fields("035").map { |x| x["a"] }
         # the one oclc is the one in the params
         expect(subfield_as_for_035.include?("(OCoLC)12345")).to eq(true)
 
@@ -85,9 +94,17 @@ describe AlmaBib do
       end
       it "has the 019s in the subfield z" do
         record = generate_updated_bib
-        subfield_zs_for_035 = record.fields("035").map { |x| x["z"] }.compact
+        subfield_zs_for_035 = subfields_for_035(record, "z")
+        #subfield_zs_for_035 = record.fields("035").map { |x| x["z"] }.compact
         expect(subfield_zs_for_035.include?("(OCoLC)555")).to eq(true)
         expect(subfield_zs_for_035.count { |x| x.match?(/OCoLC/) }).to eq(1)
+      end
+
+      it "does not duplicate a in z" do
+        record = subject.generate_updated_bib(new_oclc_number: "12345", numbers_from_019: ["555","12345"])
+        subfield_zs_for_035 = subfields_for_035(record, "z")
+        expect(subfield_zs_for_035.include?("(OCoLC)555")).to eq(true)
+        expect(subfield_zs_for_035.include?("(OCoLC)12345")).to eq(false)
       end
     end
     context "#update_035" do
