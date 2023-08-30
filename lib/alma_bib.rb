@@ -78,8 +78,8 @@ class AlmaBib
   # @param numbers_from_019 [Array] Array of old OCLC numbers from the 019
   # @return [MARC::Record] Altered MARC record associated with this alma bib
   def generate_updated_bib(new_oclc_number:, numbers_from_019:)
+    
     # get a copy of the record to alter
-    filtered_019 = numbers_from_019.delete_if{|x| x == new_oclc_number}
     my_record = record
     my_record.fields("035").each do |field|
       if field.value.match?(/OCoLC/)
@@ -93,7 +93,7 @@ class AlmaBib
     # Add the a subfield and add the (OCoLC) MARC Organization code in parentheses. Do not enter a space between the code and the control number.
     newfield.append(MARC::Subfield.new("a", "(OCoLC)#{new_oclc_number}"))
 
-    filtered_019.each do |num|
+    numbers_from_019.each do |num|
       newfield.append(MARC::Subfield.new("z", "(OCoLC)#{num}"))
     end
 
