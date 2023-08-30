@@ -1,6 +1,7 @@
 # Opens file example.txt, in directory /in, and gets one mmsid and one OCLC number per line
 # Suggestion: ruby oclc_cross_ref_process.rb example.txt output.txt
 require "faraday"
+require 'stringio'
 require "marc"
 
 #require_relative "./lib/update_alma"

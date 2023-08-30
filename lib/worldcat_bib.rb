@@ -1,4 +1,6 @@
+require "byebug"
 class WorldcatBib
+  attr_reader :bib
   def self.for(oclc_num)
     wskey = ENV.fetch("WORLDCAT_API_KEY")
 
@@ -25,7 +27,9 @@ class WorldcatBib
 
   #@return [Array] Array of all subfield values in 019
   def tag_019
-    @bib.fields("019").map{|x| x.value }
+    @bib.fields("019")&.first&.subfields&.filter_map do |subfield|
+      subfield.value if subfield.code == "a"
+    end || []
   end
 
   # Checks if any numbers in the list match anything in the 019

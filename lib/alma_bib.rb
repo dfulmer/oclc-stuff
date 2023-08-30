@@ -31,7 +31,7 @@ class AlmaBib
   #
   # @return MARC::Record
   def record
-   for rec in MARC::XMLReader.new(StringIO.new(@bib["anies"].first))
+   for rec in MARC::XMLReader.new(::StringIO.new(@bib["anies"].first))
      return rec
    end
   end
@@ -81,8 +81,7 @@ class AlmaBib
   def generate_updated_bib(new_oclc_number:, numbers_from_019: )
     # get a copy of the record to alter
     my_record = record
-
-    my_record.each_by_tag("035") do |field|
+    my_record.fields("035").each do |field|
       if field.value.match?(/OCoLC/)
         my_record.fields.delete(field)
       end

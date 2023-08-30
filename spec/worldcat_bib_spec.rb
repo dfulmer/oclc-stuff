@@ -1,6 +1,7 @@
 describe WorldcatBib do
   let(:tag_001){ "1354771677" }
   let(:tag_019_a){ "1329221766" }
+  let(:tag_019_a2){ "9999999999" }
 
   before(:each) do
     @worldcat_bib = File.read("./spec/fixtures/worldcat_output.xml")
@@ -24,7 +25,7 @@ describe WorldcatBib do
 
   context "#tag_019" do
     it "returns an array of 019 subfield values" do
-      expect(subject.tag_019).to eq([tag_019_a])
+      expect(subject.tag_019).to eq([tag_019_a, tag_019_a2])
     end
   end
   
