@@ -1,7 +1,7 @@
 describe WorldcatBib do
-  let(:tag_001){ "1354771677" }
-  let(:tag_019_a){ "1329221766" }
-  let(:tag_019_a2){ "9999999999" }
+  let(:tag_001) { "1354771677" }
+  let(:tag_019_a) { "1329221766" }
+  let(:tag_019_a2) { "9999999999" }
 
   before(:each) do
     @worldcat_bib = File.read("./spec/fixtures/worldcat_output.xml")
@@ -28,10 +28,10 @@ describe WorldcatBib do
       expect(subject.tag_019).to eq([tag_019_a, tag_019_a2])
     end
   end
-  
+
   context "#match_any_019?" do
     it "is true if if array contains a match" do
-      expect(subject.match_any_019?(["1234",tag_019_a])).to eq(true)
+      expect(subject.match_any_019?(["1234", tag_019_a])).to eq(true)
     end
     it "is false when array does not contain a match" do
       expect(subject.match_any_019?(["1234"])).to eq(false)

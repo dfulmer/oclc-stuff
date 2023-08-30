@@ -1,5 +1,4 @@
 describe AlmaBib do
-
   before(:each) do
     @alma_bib = JSON.load_file("./spec/fixtures/alma_bib.json")
   end
@@ -21,22 +20,21 @@ describe AlmaBib do
     described_class.new(@alma_bib)
   end
 
-  let (:a_oclc) { "1354771677" }
+  let(:a_oclc) { "1354771677" }
 
   let(:remove_a) {
-    @alma_bib["anies"].first.gsub!("(OCoLC)#{a_oclc}","(asdf)1234")
+    @alma_bib["anies"].first.gsub!("(OCoLC)#{a_oclc}", "(asdf)1234")
   }
 
   context "#no_oclc?" do
     it "returns false when both a and z have oclc" do
-      expect(subject.no_oclc?).to eq(false) 
-    end
-    
-    it "is true when only z" do
-      remove_a
-      expect(subject.no_oclc?).to eq(true) 
+      expect(subject.no_oclc?).to eq(false)
     end
 
+    it "is true when only z" do
+      remove_a
+      expect(subject.no_oclc?).to eq(true)
+    end
   end
 
   context "#oclc_a" do
@@ -48,7 +46,6 @@ describe AlmaBib do
       expect(subject.oclc_a).to eq([])
     end
   end
-
 
   context "#oclc_all" do
     it "returns an array of all 035a values in the record" do
@@ -70,28 +67,27 @@ describe AlmaBib do
   end
 
   context "updating the alma record" do
-    #this is easier to test
-    let(:generate_updated_bib) {subject.generate_updated_bib(new_oclc_number: "12345",numbers_from_019: ["555"]) }
-    let(:update_035) {subject.update_035(new_oclc_number: "12345", numbers_from_019: ["555"]) }
+    # this is easier to test
+    let(:generate_updated_bib) { subject.generate_updated_bib(new_oclc_number: "12345", numbers_from_019: ["555"]) }
+    let(:update_035) { subject.update_035(new_oclc_number: "12345", numbers_from_019: ["555"]) }
 
     context "#generate_updated_bib" do
       it "has new OCLC number in the 035 a" do
         record = generate_updated_bib
-        subfield_as_for_035 = record.fields("035").map{|x| x["a"]}
-        #the one oclc is the one in the params
+        subfield_as_for_035 = record.fields("035").map { |x| x["a"] }
+        # the one oclc is the one in the params
         expect(subfield_as_for_035.include?("(OCoLC)12345")).to eq(true)
 
-        #only one oclc
-        expect(subfield_as_for_035.find_all{|x| x.match?(/OCoLC/)}.count).to eq(1)
+        # only one oclc
+        expect(subfield_as_for_035.count { |x| x.match?(/OCoLC/) }).to eq(1)
 
-
-        #expect(subfields_for_035.find_all{|x| x.match?(/OCoLC/) }.count).to eq(1)
+        # expect(subfields_for_035.find_all{|x| x.match?(/OCoLC/) }.count).to eq(1)
       end
       it "has the 019s in the subfield z" do
         record = generate_updated_bib
-        subfield_zs_for_035 = record.fields("035").map{|x| x["z"]}.compact
+        subfield_zs_for_035 = record.fields("035").map { |x| x["z"] }.compact
         expect(subfield_zs_for_035.include?("(OCoLC)555")).to eq(true)
-        expect(subfield_zs_for_035.find_all{|x| x.match?(/OCoLC/)}.count).to eq(1)
+        expect(subfield_zs_for_035.count { |x| x.match?(/OCoLC/) }).to eq(1)
       end
     end
     context "#update_035" do

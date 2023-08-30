@@ -1,5 +1,4 @@
 class AlmaBib
-
   # Fetches a bib from Alma API. returns an Alma Bib object.
   #
   # @param mms_id [String] parsed json from Alma response
@@ -16,7 +15,7 @@ class AlmaBib
       req.headers[:Authorization] = "apikey #{apikey}"
     end
 
-    # raising error because this really shouldn't happen. 
+    # raising error because this really shouldn't happen.
     raise StandardError, "Failed to fetch bib from Alma" if response.status != 200
 
     AlmaBib.new(JSON.parse(response.body))
@@ -31,20 +30,20 @@ class AlmaBib
   #
   # @return MARC::Record
   def record
-   for rec in MARC::XMLReader.new(::StringIO.new(@bib["anies"].first))
-     return rec
-   end
+    for rec in MARC::XMLReader.new(::StringIO.new(@bib["anies"].first))
+      return rec
+    end
   end
 
   # Does the 035 have this control number?
   #
-  # @param control_number [String] OCLC control number 
+  # @param control_number [String] OCLC control number
   # @return [Boolean]
   def has_oclc?(control_number)
     oclc_all.include?(control_number)
   end
 
-  # Are there any OCLC numbers in the 035? 
+  # Are there any OCLC numbers in the 035?
   #
   # @return [Boolean]
   def no_oclc?
@@ -61,14 +60,14 @@ class AlmaBib
     oclc_a
   end
 
-  # @param subfield [String] 035 subfield to get OCLC strings friom  
+  # @param subfield [String] 035 subfield to get OCLC strings friom
   # @return [Array] Array of valid OCLC strings with the prefix stripped
   def oclc_subfield(subfield)
     subfields = record
       .fields("035")
-      .map{|x| x.find_all {|s| s.code == subfield } }
+      .map { |x| x.find_all { |s| s.code == subfield } }
       .flatten
-      .map{|x| x.value }
+      .map { |x| x.value }
     normalize_and_filter_oclc(subfields)
   end
 
@@ -78,7 +77,7 @@ class AlmaBib
   # @param new_oclc_number [String] OCLC xref number
   # @param numbers_from_019 [Array] Array of old OCLC numbers from the 019
   # @return [MARC::Record] Altered MARC record associated with this alma bib
-  def generate_updated_bib(new_oclc_number:, numbers_from_019: )
+  def generate_updated_bib(new_oclc_number:, numbers_from_019:)
     # get a copy of the record to alter
     my_record = record
     my_record.fields("035").each do |field|
@@ -87,18 +86,18 @@ class AlmaBib
       end
     end
 
-      # Create a new 035 field
-      newfield = MARC::DataField.new("035", " ", " ")
+    # Create a new 035 field
+    newfield = MARC::DataField.new("035", " ", " ")
 
-      # Add the a subfield and add the (OCoLC) MARC Organization code in parentheses. Do not enter a space between the code and the control number.
-      newfield.append(MARC::Subfield.new("a", "(OCoLC)#{new_oclc_number}"))
+    # Add the a subfield and add the (OCoLC) MARC Organization code in parentheses. Do not enter a space between the code and the control number.
+    newfield.append(MARC::Subfield.new("a", "(OCoLC)#{new_oclc_number}"))
 
-      numbers_from_019.each do |num|
-        newfield.append(MARC::Subfield.new("z", "(OCoLC)#{num}"))
-      end
+    numbers_from_019.each do |num|
+      newfield.append(MARC::Subfield.new("z", "(OCoLC)#{num}"))
+    end
 
-      my_record.append(newfield)
-      my_record
+    my_record.append(newfield)
+    my_record
   end
 
   # Updates the alma record via the Alma API with the new oclc number from the
@@ -110,23 +109,22 @@ class AlmaBib
   # @param new_oclc_number [String] OCLC xref number
   # @param numbers_from_019 [Array] Array of old OCLC numbers from the 019
   def update_035(new_oclc_number:, numbers_from_019: [])
-    xml_record = "<bib>" + 
+    xml_record = "<bib>" +
       generate_updated_bib(
-        new_oclc_number: new_oclc_number, 
+        new_oclc_number: new_oclc_number,
         numbers_from_019: numbers_from_019
-      ).to_xml_string + 
+      ).to_xml_string +
       "</bib>"
 
-      response = Faraday.new.put do |req|
-        req.url "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{@bib["mms_id"]}?validate=false&override_warning=true&override_lock=true&stale_version_check=false&check_match=false"
-        req.headers[:content_type] = "application/xml"
-        req.headers[:Accept] = "application/json"
-        req.headers[:Authorization] = "apikey #{ENV.fetch("ALMA_API_KEY")}"
-        req.body = xml_record
+    response = Faraday.new.put do |req|
+      req.url "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{@bib["mms_id"]}?validate=false&override_warning=true&override_lock=true&stale_version_check=false&check_match=false"
+      req.headers[:content_type] = "application/xml"
+      req.headers[:Accept] = "application/json"
+      req.headers[:Authorization] = "apikey #{ENV.fetch("ALMA_API_KEY")}"
+      req.body = xml_record
     end
 
-    response.status == 200 ? "Record updated" : "Record not updated"
-
+    (response.status == 200) ? "Record updated" : "Record not updated"
   end
 
   # This is an effectively private method that takes an array of 035 subfields
@@ -136,11 +134,10 @@ class AlmaBib
   # @return [Array] Array of only valid OCLC strings with just the number
   def normalize_and_filter_oclc(subfields)
     subfields.filter_map do |s|
-      if s.match?('OCoLC')
+      if s.match?("OCoLC")
         # get only the digits"
         s.scan(/\d+/).first
       end
     end
   end
-  
 end
