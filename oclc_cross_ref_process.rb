@@ -16,6 +16,7 @@ module OCLCProcessor
   def self.process(input_file, output_file)
     linecount = 0
     countandskipcount = 0
+    exceptions = []
     File.open("out/#{output_file}", "w") do |out|
       File.open("in/#{input_file}", "r").each_line do |line|
         line.chomp!
@@ -31,6 +32,7 @@ module OCLCProcessor
           # this means the mms id in the xref file wasn't found. It's an error.
           # Report it.
           out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\tMMSID Doesn't Exist\n"
+          exceptions.push("#{mmsid}\t#{oclcnum}\tMMSID Not found")
           next
         end
 
@@ -78,12 +80,15 @@ module OCLCProcessor
           # Report error
           # puts "Report error: Number Change No"
           out.print "#{linecount}\t#{mmsid}\t#{oclcnum}\tNumber Change No; Report error\n"
+          exceptions.push("#{mmsid}\t#{oclcnum}\tNo number change found; Error")
           # And go to next line
           # puts "keep going"
           # puts numberchangeresult
         end
       end
     end
+    File.write("out/#{output_file}.errors", exceptions.join("\n")) 
+    
   end
 end
 
