@@ -1,13 +1,13 @@
-# oclc-stuff
+# aim-oclc-xrefs
 Experiments.
 
-## Setting up OCLC stuff
+## Setting up aim-oclc-xrefs
 
 Clone the repo
 
 ```
-git clone git@github.com:dfulmer/oclc-stuff.git
-cd oclc-stuff
+git clone https://github.com/mlibrary/aim-oclc-xrefs.git
+cd aim-oclc-xrefs
 ```
 
 copy .env-example to .env
@@ -111,6 +111,12 @@ Prints out one line in /out/output.txt per each line from /in/example.txt, with 
 ```
 docker-compose run --rm app bundle exec ruby oclc_cross_ref_process.rb example.txt output.txt
   => look in out/output.txt for results.
+```
+
+## Running tests
+
+```
+docker-compose run --rm app bundle exec rspec
 ```
 
 ![Cross-refs-2](https://github.com/dfulmer/oclc-stuff/assets/18075253/8e0fa876-36ff-4ac8-b38a-950e98660a37)
