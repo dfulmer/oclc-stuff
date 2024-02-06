@@ -137,7 +137,9 @@ class AlmaBib
     subfields.filter_map do |s|
       if s.match?("OCoLC")
         # get only the digits"
-        s.scan(/\d+/).first
+        #s.scan(/\d+/).first
+        t = s.scan(/\d+/).first
+        t.sub(/^[0]+/,'')
       end
     end
   end
