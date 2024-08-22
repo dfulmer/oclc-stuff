@@ -17,7 +17,7 @@ class WorldcatBib
 
     # WorldcatBib.new(response.body)
     # Here is the new stuff for dealing with the WorldCat Metadata API version 2.0
-    result = `python3 aimworldcat4.py #{oclc_num}`
+    result = `python3 worldcatapiv2.py #{oclc_num}`
 
     # raising error because this really shouldn't happen.
     raise StandardError, "Failed to fetch bib from Worldcat" if result == "Error\n"
