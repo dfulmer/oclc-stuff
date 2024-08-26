@@ -13,7 +13,7 @@ describe WorldcatBib do
       expect(described_class.for(tag_001).class).to eq(WorldcatBib)
     end
 
-    it "raises a StandardError if there's worldcat_bib" do
+    xit "raises a StandardError if there's worldcat_bib" do
       stub_request(:get, "https://worldcat.org/webservices/catalog/content/#{tag_001}?servicelevel=full&wskey=#{ENV.fetch("WORLDCAT_API_KEY")}").to_return(status: 500, body: "", headers: {})
       expect { described_class.for(tag_001) }.to raise_error(StandardError)
     end

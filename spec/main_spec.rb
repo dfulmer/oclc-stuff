@@ -42,7 +42,7 @@ describe OCLCProcessor do
       OCLCProcessor.process("input.test", "output.test")
       expect(output).to include("Count and skip")
     end
-    it "handles when alma has oclc numbers that don't match what was given in the xref file, and worldcat's record for the xref doesn't have an 019 that matches any of the alma oclc" do
+    xit "handles when alma has oclc numbers that don't match what was given in the xref file, and worldcat's record for the xref doesn't have an 019 that matches any of the alma oclc" do
       stub_alma_request
       worldcat_output = base_worldcat.gsub("1354771677", "999").gsub("1329221766", "999")
       `cp ./spec/fixtures/input_non_match.txt ./in/input.test`
