@@ -16,7 +16,7 @@ copy .env-example to .env
 cp .env-example .env
 ```
 
-edit .env with actual environment variables
+edit .env with actual environment variables. Note that you will need a WSKey Client ID and Secret with the Service "WorldCat Metadata API".
 
 build container
 ```
