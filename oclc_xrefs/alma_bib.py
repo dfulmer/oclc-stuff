@@ -13,11 +13,23 @@ class AlmaBib:
             "Accept": "application/json",
             "Authorization": f"apikey { api_key }"
         }
-        r = requests.get(f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{mms_id}?expand=None&view=full",
+        resp = requests.get(f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{mms_id}?expand=None&view=full",
                      headers=headers)
-        return AlmaBib(r.json())
+        if resp.status_code == 200:
+            return AlmaBib(resp.json())
+        else:
+            return EmptyAlmaBib()
+
+    @property
+    def is_in_alma(self):
+        return True
 
 
-
+    @property
     def mms_id(self):
         return self.bib["mms_id"]
+
+class EmptyAlmaBib:
+    @property
+    def is_in_alma(self):
+        return False

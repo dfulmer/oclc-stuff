@@ -4,6 +4,9 @@ import responses
 import requests
 from oclc_xrefs.alma_bib import AlmaBib
 
+@pytest.fixture
+def mms_id():
+    return "99187608627106381"
 
 @pytest.fixture
 def alma_bib():
@@ -11,18 +14,31 @@ def alma_bib():
      output = json.load(f)
   return output
 
-@pytest.fixture
-def alma_bib_str(alma_bib):
-  return json.dumps(alma_bib)
+@responses.activate
+def test_fetch_success(alma_bib, mms_id):
+    responses.get( 
+       "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?expand=None&view=full",
+       json=alma_bib,
+       status=200
+    ) 
+    bib = AlmaBib.fetch(mms_id)
+    assert(bib.mms_id) == mms_id
 
 @responses.activate
-def test_fetch(alma_bib):
-    responses.add(responses.GET, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?expand=None&view=full",
-                  json=alma_bib, status=200) 
-    bib = AlmaBib.fetch("99187608627106381")
-    assert(bib.mms_id()) == "99187608627106381"
+def test_fetch_fail(mms_id):
+    responses.get( 
+       "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187608627106381?expand=None&view=full",
+       json={"msg": "error"},
+       status=500
+    ) 
+    bib = AlmaBib.fetch(mms_id)
+    assert(bib.is_in_alma) == False
 
-
-def test_mms_id(alma_bib):
+def test_is_in_alma(alma_bib):
     bib = AlmaBib(alma_bib)
-    assert bib.mms_id() == "99187608627106381"
+    assert bib.is_in_alma == True
+
+
+def test_mms_id(alma_bib, mms_id):
+    bib = AlmaBib(alma_bib)
+    assert bib.mms_id == mms_id
