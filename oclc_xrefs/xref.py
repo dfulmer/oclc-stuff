@@ -8,9 +8,20 @@ class Xref:
         self.oclc_num = oclc_num
         self._alma_bib = None
 
-    def mms_id_in_alma(self):
+    @property
+    def mms_id_is_in_alma(self):
         return self.alma_bib.is_in_alma
+    
+    @property
+    def alma_oclc_nums(self):
+        return self.alma_bib.oclc
 
+    @property
+    def alma_035a_matches_xref(self):
+        if self.oclc_num in self.alma_oclc_nums:
+          return True
+        else:
+          return False
     
     @cached_property
     def alma_bib(self):

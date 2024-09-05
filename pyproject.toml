@@ -15,6 +15,7 @@ python = "^3.11"
 requests = "^2.31.0"
 pandas = "^2.2.2"
 responses = "^0.25.3"
+pymarc = "^5.2.2"
 
 
 [tool.poetry.group.dev.dependencies]

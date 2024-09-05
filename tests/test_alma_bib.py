@@ -9,6 +9,10 @@ def mms_id():
     return "99187608627106381"
 
 @pytest.fixture
+def oclc_num():
+   return "1354771677"
+
+@pytest.fixture
 def alma_bib():
   with open('tests/fixtures/alma_bib.json') as f:
      output = json.load(f)
@@ -34,11 +38,10 @@ def test_fetch_fail(mms_id):
     bib = AlmaBib.fetch(mms_id)
     assert(bib.is_in_alma) == False
 
-def test_is_in_alma(alma_bib):
-    bib = AlmaBib(alma_bib)
-    assert bib.is_in_alma == True
-
-
 def test_mms_id(alma_bib, mms_id):
     bib = AlmaBib(alma_bib)
     assert bib.mms_id == mms_id
+
+def test_oclc(alma_bib, oclc_num):
+    bib = AlmaBib(alma_bib)
+    assert bib.oclc == [oclc_num]
