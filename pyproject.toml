@@ -16,11 +16,12 @@ requests = "^2.31.0"
 pandas = "^2.2.2"
 responses = "^0.25.3"
 pymarc = "^5.2.2"
+requests-oauthlib = "^2.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.2"
-#ruff = "^0.2.2"
+ruff = "^0.2.2"
 pytest-socket = "^0.7.0"
 
 [build-system]
@@ -32,3 +33,6 @@ addopts = "--disable-socket"
 testpaths = [
     "tests"
 ]
+
+[tool.ruff.lint]
+select = ["ALL"]
