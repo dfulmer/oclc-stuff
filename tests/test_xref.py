@@ -104,8 +104,9 @@ def test_process_when_no_mms_id(mms_id,oclc_num):
    assert(result["kind"]) == "error"
    assert(result["msg"]) == "ERROR: MMS_ID not found"
 
+
 @responses.activate
-def test_process_when_alma_has_no_oclc(mms_id,oclc_num,alma_bib_json):
+def test_process_when_alma_has_no_oclc_success(mms_id,oclc_num,alma_bib_json):
    xml = alma_bib_json["anies"][0]
    alma_bib_json["anies"] = [xml.replace("(OCoLC)", "()")]
    alma_bib = AlmaBib(alma_bib_json)
@@ -115,12 +116,11 @@ def test_process_when_alma_has_no_oclc(mms_id,oclc_num,alma_bib_json):
     ) 
    xref = Xref(mms_id=mms_id, oclc_num=oclc_num, alma_bib=alma_bib)
    result = xref.process()
-   assert(result["kind"]) == "update"
+   assert(result["kind"]) == "update_a"
    assert(result["msg"]) == "UPDATE: 035 $a"
 
-
 @responses.activate
-def test_process_when_alma_has_no_oclc(mms_id,oclc_num,alma_bib_json):
+def test_process_when_alma_has_no_oclc_failure(mms_id,oclc_num,alma_bib_json):
    xml = alma_bib_json["anies"][0]
    alma_bib_json["anies"] = [xml.replace("(OCoLC)", "()")]
    alma_bib = AlmaBib(alma_bib_json)
@@ -151,7 +151,7 @@ def test_process_when_alma_has_oclc_in_019(mms_id,oclc_num,alma_bib_json, worldc
     ) 
    xref = Xref(mms_id=mms_id, oclc_num=oclc_num, alma_bib=alma_bib, worldcat_bib=worldcat_bib)
    result = xref.process()
-   assert(result["kind"]) == "update"
+   assert(result["kind"]) == "update_a_and_z"
    assert(result["msg"]) == "UPDATE: 035 $a and $z"
 
 @responses.activate

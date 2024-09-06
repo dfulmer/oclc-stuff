@@ -43,7 +43,7 @@ class Xref:
                     "kind": "error", 
                     "msg": "ERROR: update alma with 035 $a failed"
                     }
-            return { "kind": "update", "msg": "UPDATE: 035 $a"}
+            return { "kind": "update_a", "msg": "UPDATE: 035 $a"}
         elif self.alma_035a_matches_xref:
             return {"kind": "skip", "msg": "SKIP"} 
         elif self.matches_any_worldcat_019:
@@ -57,7 +57,7 @@ class Xref:
                     "kind": "error", 
                     "msg": "ERROR: update alma with 035 $a and $z failed"
                     }
-            return { "kind": "update", "msg": "UPDATE: 035 $a and $z"}
+            return { "kind": "update_a_and_z", "msg": "UPDATE: 035 $a and $z"}
         else:
             return { "kind": "error", "msg": "ERROR: No number change found"}
             
