@@ -76,7 +76,7 @@ class AlmaBib:
         
         return new_record 
     
-    def update_035a(self, new_oclc_number, numbers_from_019):
+    def update_035a(self, new_oclc_number, numbers_from_019=[]):
         new_record = self.generate_updated_record(new_oclc_number=new_oclc_number, numbers_from_019=numbers_from_019)
         xml = "<bib>" + str(pymarc.marcxml.record_to_xml(new_record).decode()) + "</bib>"
         new_bib = copy.deepcopy(self.bib)
@@ -97,6 +97,9 @@ class AlmaBib:
         }
         resp = requests.put(f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{self.mms_id}",
                      headers=headers, params=params, json=new_bib)
+        
+        if resp.status_code != 200:
+            raise Exception(f"Alma returned status code resp.status_code")
 
 class EmptyAlmaBib:
     @property
