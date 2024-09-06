@@ -12,5 +12,8 @@ else
   docker run --rm -v ./.env:/.env alpine echo "$(sed s/YOUR_GID/$YOUR_GID/ .env)" > .env
 fi
 
-#echo "🚢 Build docker images"
-#docker compose build
+echo "🚢 Build docker images"
+docker compose build
+
+echo "📦 Build python packages"
+docker compose run --rm app poetry install
