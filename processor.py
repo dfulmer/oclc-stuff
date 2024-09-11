@@ -11,12 +11,10 @@ from oclc_xrefs.xref import Xref
 def main(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser(description='Processes OCLC Xref File')
     parser.add_argument('input_file',help="path to input file of oclc xrefs")
-    parser.add_argument('--report_file', default="report.txt",
-                        help="path to report file; default is report.txt")
-    parser.add_argument('--error_file', default="error.txt",
-                        help="path to error file; default is error.txt")
+    parser.add_argument('output_file_name',help="start of the name for the output files. This will create the files FILENAME_log.txt, FILENAME_report.txt, FILENAME_errors.txt")
     
     args = parser.parse_args(args=argv)
+
 
     counts = {
         "skipped": 0,
@@ -25,8 +23,10 @@ def main(argv=sys.argv[1:]):
         "update_a_and_z": 0,
         "errors": 0,
     }
-    report =  open(args.report_file, 'w', encoding="utf-8")
-    error = open(args.error_file, 'w', encoding="utf-8")
+    
+    log =  open(f"{args.output_file_name}_log.txt", 'w', encoding="utf-8")
+    error =  open(f"{args.output_file_name}_error.txt", 'w', encoding="utf-8")
+    report =  open(f"{args.output_file_name}_report.txt", 'w', encoding="utf-8")
 
     with open(args.input_file) as f:
         for line in f:
@@ -51,13 +51,13 @@ def main(argv=sys.argv[1:]):
 
             text = f"{mms_id}\t{oclc_num}\t{result['msg']}\n"             
 
-            report.write(text)
+            log.write(text)
             if result["kind"] == "error":
                 error.write(text)
-    report.write("\n\n\n")
     for count in counts:
         report.write(f"{count}: {counts[count]}\n")
 
+    log.close()
     report.close()
     error.close()
 
