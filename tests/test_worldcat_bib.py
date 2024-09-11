@@ -22,6 +22,7 @@ def worldcat_bib():
      output = f.read() 
   return output
 
+
 @responses.activate
 def test_fetch_success(worldcat_bib, oclc_num):
     responses.post( 
@@ -51,10 +52,6 @@ def test_fetch_success(worldcat_bib, oclc_num):
 #     bib = AlmaBib.fetch(mms_id)
 #     assert(bib.is_in_alma) == False
 
-# def test_tag_019(worldcat_bib, oclc_number):
-#     bib = AlmaBib(alma_bib)
-#     assert bib.mms_id == mms_id
-
 def test_oclc(worldcat_bib, oclc_num):
     bib = WorldcatBib(worldcat_bib)
     assert bib.oclc_num == oclc_num
@@ -62,6 +59,10 @@ def test_oclc(worldcat_bib, oclc_num):
 def test_oclc(worldcat_bib, oclc_num):
     bib = WorldcatBib(worldcat_bib)
     assert bib.oclc_num == oclc_num
+
+def test_tag_019_with_empty_019(worldcat_bib):
+   bib = WorldcatBib(worldcat_bib.replace("tag=\"019\"","tag=\"020\""))
+   assert bib.tag_019 == []
 
 def test_tag_019(worldcat_bib, tag_019_a1, tag_019_a2):
    bib = WorldcatBib(worldcat_bib)

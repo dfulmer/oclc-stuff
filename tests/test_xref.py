@@ -88,7 +88,7 @@ def test_worldcat_bib_fetched_from_worldcat(alma_bib, mms_id, oclc_num, worldcat
 
 def test_matches_any_worldcat_019(alma_bib_json, worldcat_bib, mms_id, oclc_num):
    xml = alma_bib_json["anies"][0]
-   alma_bib_json["anies"] = [xml.replace(oclc_num, "123456789")]
+   alma_bib_json["anies"] = [xml.replace(oclc_num, "0123456789")]
    alma_bib = AlmaBib(alma_bib_json)
    xref = Xref(mms_id=mms_id, oclc_num=oclc_num, alma_bib=alma_bib, worldcat_bib=worldcat_bib)
    assert(xref.matches_any_worldcat_019) == True
@@ -118,6 +118,21 @@ def test_process_when_alma_has_no_oclc_success(mms_id,oclc_num,alma_bib_json):
    result = xref.process()
    assert(result["kind"]) == "update_a"
    assert(result["msg"]) == "UPDATE: 035 $a"
+
+@responses.activate
+def test_process_when_alma_has_no_invalid_oclc(mms_id,oclc_num,alma_bib_json):
+   xml = alma_bib_json["anies"][0]
+   alma_bib_json["anies"] = [xml.replace("1354771677", "not_a_valid_oclc_number")]
+   alma_bib = AlmaBib(alma_bib_json)
+   resp = responses.put( 
+       f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{mms_id}",
+       status=200
+    ) 
+   xref = Xref(mms_id=mms_id, oclc_num=oclc_num, alma_bib=alma_bib)
+   result = xref.process()
+   assert(result["kind"]) == "error"
+   assert(result["msg"]) == "ERROR: Invalid oclc number(s) in Alma"
+
 
 @responses.activate
 def test_process_when_alma_has_no_oclc_failure(mms_id,oclc_num,alma_bib_json):

@@ -44,7 +44,11 @@ class WorldcatBib:
 
     @property
     def tag_019(self):
-      return self.record["019"].get_subfields("a")
+      try:
+        output = self.record["019"].get_subfields("a")
+      except:
+        output = []
+      return output
     
     def has_any_019(self, values):
       for alma_oclc_num in values:

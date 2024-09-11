@@ -6,9 +6,15 @@ This script processes oclc xrefs
 import sys
 import argparse
 from oclc_xrefs.xref import Xref
+import logging
+
 
 
 def main(argv=sys.argv[1:]):
+    logging.basicConfig(
+        level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S',
+     )
     parser = argparse.ArgumentParser(description='Processes OCLC Xref File')
     parser.add_argument('input_file',help="path to input file of oclc xrefs")
     parser.add_argument('output_file_name',help="start of the name for the output files. This will create the files FILENAME_log.txt, FILENAME_report.txt, FILENAME_errors.txt")
@@ -27,6 +33,8 @@ def main(argv=sys.argv[1:]):
     log =  open(f"{args.output_file_name}_log.txt", 'w', encoding="utf-8")
     error =  open(f"{args.output_file_name}_error.txt", 'w', encoding="utf-8")
     report =  open(f"{args.output_file_name}_report.txt", 'w', encoding="utf-8")
+    
+    logging.info(f"Start processing OCLC Xref File: {args.input_file}")
 
     with open(args.input_file) as f:
         for line in f:
@@ -54,12 +62,18 @@ def main(argv=sys.argv[1:]):
             log.write(text)
             if result["kind"] == "error":
                 error.write(text)
+                logging.error(msg=text)
+            else:
+                logging.info(msg(text))
+            
     for count in counts:
         report.write(f"{count}: {counts[count]}\n")
 
     log.close()
     report.close()
     error.close()
+
+    logging.info(f"Finished processing OCLC Xref File: {args.input_file}")
 
     return 0 # ok status
 

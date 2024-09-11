@@ -35,7 +35,14 @@ class Xref:
     def process(self):
         if not self.mms_id_is_in_alma:
             return { "kind": "error", "msg": "ERROR: MMS_ID not found" }
-        elif not self.alma_oclc_nums:
+        try: 
+          self.alma_oclc_nums 
+        except:
+           return { 
+               "kind": "error", 
+               "msg": "ERROR: Invalid oclc number(s) in Alma"
+            }
+        if not self.alma_oclc_nums:
             try:
                 self.alma_bib.update_035a(new_oclc_number=self.oclc_num)
             except:
