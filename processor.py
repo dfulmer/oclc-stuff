@@ -21,8 +21,8 @@ def main(argv=sys.argv[1:]):
     counts = {
         "skipped": 0,
         "updates": 0,
-        "updated_with_a": 0,
-        "updated_with_a_and_z": 0,
+        "add_a": 0,
+        "update_a_and_z": 0,
         "errors": 0,
     }
     report =  open(args.report_file, 'w', encoding="utf-8")
@@ -38,13 +38,13 @@ def main(argv=sys.argv[1:]):
             result = xref.process()
 
             match result["kind"]:
-                case "skipped":
+                case "skip":
                     counts["skipped"] += 1
                 case "error":
                     counts["errors"] +=1
                 case "update_a":
                     counts["updates"] +=1
-                    counts["update_a"] +=1
+                    counts["add_a"] +=1
                 case "update_a_and_z":
                     counts["updates"] +=1
                     counts["update_a_and_z"] +=1

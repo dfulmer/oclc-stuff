@@ -14,7 +14,7 @@ def tag_019_a1():
 
 @pytest.fixture
 def tag_019_a2():
-   return "0123456789"
+   return "123456789"
 
 @pytest.fixture
 def worldcat_bib():

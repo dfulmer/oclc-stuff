@@ -88,7 +88,7 @@ def test_worldcat_bib_fetched_from_worldcat(alma_bib, mms_id, oclc_num, worldcat
 
 def test_matches_any_worldcat_019(alma_bib_json, worldcat_bib, mms_id, oclc_num):
    xml = alma_bib_json["anies"][0]
-   alma_bib_json["anies"] = [xml.replace(oclc_num, "0123456789")]
+   alma_bib_json["anies"] = [xml.replace(oclc_num, "123456789")]
    alma_bib = AlmaBib(alma_bib_json)
    xref = Xref(mms_id=mms_id, oclc_num=oclc_num, alma_bib=alma_bib, worldcat_bib=worldcat_bib)
    assert(xref.matches_any_worldcat_019) == True
@@ -143,7 +143,7 @@ def test_process_when_alma_035a_already_matches(mms_id,oclc_num, alma_bib):
 @responses.activate
 def test_process_when_alma_has_oclc_in_019(mms_id,oclc_num,alma_bib_json, worldcat_bib):
    xml = alma_bib_json["anies"][0]
-   alma_bib_json["anies"] = [xml.replace(oclc_num, "0123456789")]
+   alma_bib_json["anies"] = [xml.replace(oclc_num, "123456789")]
    alma_bib = AlmaBib(alma_bib_json)
    resp = responses.put( 
        f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{mms_id}",
@@ -157,7 +157,7 @@ def test_process_when_alma_has_oclc_in_019(mms_id,oclc_num,alma_bib_json, worldc
 @responses.activate
 def test_process_when_alma_has_oclc_in_019_but_fails_update(mms_id,oclc_num,alma_bib_json, worldcat_bib):
    xml = alma_bib_json["anies"][0]
-   alma_bib_json["anies"] = [xml.replace(oclc_num, "0123456789")]
+   alma_bib_json["anies"] = [xml.replace(oclc_num, "123456789")]
    alma_bib = AlmaBib(alma_bib_json)
    resp = responses.put( 
        f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{mms_id}",

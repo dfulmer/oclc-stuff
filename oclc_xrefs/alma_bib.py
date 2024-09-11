@@ -34,7 +34,8 @@ class AlmaBib:
         for f in fields:
             for s in f.subfields:
                 if s.code == "a" and re.search("OCoLC",s.value):
-                  output.append(re.findall(r'\d+', s.value)[0])
+                  all_digits = re.findall(r'\d+', s.value)[0]
+                  output.append(re.sub(r'^[0]+', r'', all_digits))
         return output
       
     @property 
@@ -79,12 +80,10 @@ class AlmaBib:
     def update_035a(self, new_oclc_number, numbers_from_019=[]):
         new_record = self.generate_updated_record(new_oclc_number=new_oclc_number, numbers_from_019=numbers_from_019)
         xml = "<bib>" + str(pymarc.marcxml.record_to_xml(new_record).decode()) + "</bib>"
-        new_bib = copy.deepcopy(self.bib)
-        new_bib["anies"] = [xml]
         
         api_key = os.environ["ALMA_API_KEY"]
         headers = {
-            "content": "application/json",
+            "content-type": "application/xml",
             "Accept": "application/json",
             "Authorization": f"apikey { api_key }"
         }
@@ -96,8 +95,7 @@ class AlmaBib:
            "validate": "false"
         }
         resp = requests.put(f"https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/{self.mms_id}",
-                     headers=headers, params=params, json=new_bib)
-        
+                     headers=headers, params=params, data=xml)
         if resp.status_code != 200:
             raise Exception(f"Alma returned status code resp.status_code")
 
