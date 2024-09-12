@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "oclc_xrefs"
+version = "0.1.0"
+description = "Scripts for handling oclc xrefs"
+authors = [ 
+  "Monique Rio <mrio@umich.edu>", 
+  "David Fulmer <dfulmer@umich.edu>",
+  "Margaret Kelly <megrust@umich.edu>"
+]
+readme = "README.md"
+packages = [{include = "oclc_xrefs"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+pandas = "^2.2.2"
+responses = "^0.25.3"
+pymarc = "^5.2.2"
+requests-oauthlib = "^2.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.2"
+ruff = "^0.2.2"
+pytest-socket = "^0.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "--disable-socket"
+testpaths = [
+    "tests"
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
