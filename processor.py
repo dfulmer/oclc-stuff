@@ -64,7 +64,7 @@ def main(argv=sys.argv[1:]):
                 error.write(text)
                 logging.error(msg=text)
             else:
-                logging.info(msg(text))
+                logging.info(msg=text)
             
     for count in counts:
         report.write(f"{count}: {counts[count]}\n")
