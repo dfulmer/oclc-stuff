@@ -33,6 +33,13 @@ class Xref:
             return False
     
     def process(self):
+        try:
+            self.alma_bib
+        except:
+           return { 
+               "kind": "error", 
+               "msg": "ERROR: Can't open Alma bib record"
+            }
         if not self.mms_id_is_in_alma:
             return { "kind": "error", "msg": "ERROR: MMS_ID not found" }
         try: 
