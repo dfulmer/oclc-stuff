@@ -20,6 +20,12 @@ def alma_bib():
      output = json.load(f)
   return output
 
+@pytest.fixture
+def alma_bib_with_908():
+  with open('tests/fixtures/alma_bib_with_908.json') as f:
+     output = json.load(f)
+  return output
+
 @responses.activate
 def test_fetch_success(alma_bib, mms_id):
     responses.get( 
@@ -54,6 +60,17 @@ def test_oclc_leading_zeros(alma_bib, oclc_num):
     bib = AlmaBib(alma_bib)
     assert bib.oclc == ["5055"]
 
+
+@pytest.mark.skip
+def test_has_908_is_false(alma_bib):
+    bib = AlmaBib(alma_bib)
+    assert bib.has_908 == False
+
+@pytest.mark.skip
+def test_has_908_is_true(alma_bib_with_908):
+    bib = AlmaBib(alma_bib_with_908)
+    assert bib.has_908 == True
+
 def test_generate_update_bib_has_new_oclc_num_in_035a(alma_bib):
     new_record = AlmaBib(alma_bib).generate_updated_record(new_oclc_number="123")
     control_numbers = []
@@ -71,6 +88,23 @@ def test_generate_update_bib_has_019_in_035a(alma_bib):
      
     assert("(OCoLC)555" in control_numbers)
     assert("(OCoLC)222" in control_numbers)
+
+
+def test_generate_update_bib_does_not_have_997_when_there_is_no_908(alma_bib):
+    new_record = AlmaBib(alma_bib).generate_updated_record(new_oclc_number="123",numbers_from_019=["555","222"])
+    assert(new_record.get('908')) == None
+    assert(new_record.get('997')) == None
+     
+"""
+Need to add a file called `alma_bib_with_908.json` and put it in `test/fixtures/`. 
+"""
+@pytest.mark.skip
+def test_generate_update_bib_does_has_a_997_when_there_is_a_908(alma_bib_with_908):
+    new_record = AlmaBib(alma_bib_with_908).generate_updated_record(new_oclc_number="123",numbers_from_019=["555","222"])
+    assert(new_record.get('908')) != None
+    assert(new_record.get('997')) != None
+
+    
 
 @responses.activate
 def test_update_035a(alma_bib, mms_id):
