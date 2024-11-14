@@ -50,6 +50,13 @@ class AlmaBib:
     def mms_id(self):
         return self.bib["mms_id"]
 
+    """
+    This needs to be filled out!
+    """
+    @property
+    def has_908(self):
+        pass
+
     def _clone_record(self):
         raw_xml_string = self.bib["anies"][0]
         return pymarc.parse_xml_to_array(io.StringIO(raw_xml_string))[0]
