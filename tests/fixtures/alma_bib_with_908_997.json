@@ -1,0 +1,40 @@
+{
+  "mms_id": "99187903556606381",
+  "record_format": "marc21",
+  "linked_record_id": {},
+  "title": "Two dialogues on free-soilism, slavery, and abolition, : amended and much enlarged. /",
+  "author": "Perry, Nathaniel.",
+  "network_number": [
+    "(OCoLC)on1416147513",
+    "(OCoLC)1416147513"
+  ],
+  "place_of_publication": "Boston: :",
+  "date_of_publication": "March, 1853.",
+  "publisher_const": "Published by the author, at no. 9 Fayette Court, up stairs, a few rods north of Boylston Market. C.C.P. Moody, printer.,",
+  "holdings": {
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187903556606381/holdings"
+  },
+  "created_by": "System",
+  "created_date": "2023-12-29Z",
+  "last_modified_by": "olinda",
+  "last_modified_date": "2024-01-10Z",
+  "suppress_from_publishing": "false",
+  "suppress_from_external_search": "false",
+  "suppress_from_metadoor": "false",
+  "rank": "68",
+  "sync_with_oclc": "BIBS",
+  "sync_with_libraries_australia": "NONE",
+  "originating_system": "OCLC",
+  "originating_system_id": "on1416147513",
+  "cataloging_level": {
+    "value": "00",
+    "desc": "Default Level"
+  },
+  "brief_level": {
+    "value": "06",
+    "desc": "06"
+  },
+  "anies": [
+    "<record><leader>01942cam a2200421 a 4500</leader><controlfield tag=\"001\">99187903556606381</controlfield><controlfield tag=\"005\">20240110155638.0</controlfield><controlfield tag=\"008\">231229s1853    mau           000 0 eng d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)1416147513</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)on1416147513</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">E8W</subfield><subfield code=\"b\">eng</subfield><subfield code=\"e\">dcrmb</subfield><subfield code=\"c\">E8W</subfield><subfield code=\"d\">E8W</subfield><subfield code=\"d\">MiU-C</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"049\"><subfield code=\"a\">E8WA</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"099\"><subfield code=\"a\">Pam 1853 Pe</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Perry, Nathaniel.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Two dialogues on free-soilism, slavery, and abolition, :</subfield><subfield code=\"b\">amended and much enlarged. /</subfield><subfield code=\"c\">By Nathatiel Perry. [Fifteen lines of Scripture texts].</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"246\"><subfield code=\"i\">Running title:</subfield><subfield code=\"a\">Freesoilism, slavery, and abolition</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">Boston: :</subfield><subfield code=\"b\">Published by the author, at no. 9 Fayette Court, up stairs, a few rods north of Boylston Market. C.C.P. Moody, printer.,</subfield><subfield code=\"c\">March, 1853.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">64 pages ;</subfield><subfield code=\"c\">15 cm</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">text</subfield><subfield code=\"b\">txt</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"337\"><subfield code=\"a\">unmediated</subfield><subfield code=\"b\">n</subfield><subfield code=\"2\">rdamedia</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"338\"><subfield code=\"a\">volume</subfield><subfield code=\"b\">nc</subfield><subfield code=\"2\">rdacarrier</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"490\"><subfield code=\"a\">Experimental knowledge ;</subfield><subfield code=\"v\">no. 35-6</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">ACQ: 40905; Ian Brabner; 3/21/2022.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Cover title.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Imprint date precedes printer statement on cover.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Consult: Library Company of Philadelphia. Afro-Americana, 1553-1906 (2nd ed.), 7644.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Only no. 36 of Experimental knowledge present; no. 35 omitted from text.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">Contemporary pink limp paper; publishers' printed wrappers; text stab-sewn through three holes and paper wrapper pasted on.</subfield></datafield><datafield ind1=\"2\" ind2=\"0\" tag=\"610\"><subfield code=\"a\">Free Soil Party (U.S.)</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Protectionism</subfield><subfield code=\"z\">United States.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Free trade</subfield><subfield code=\"z\">United States.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Tariff</subfield><subfield code=\"x\">Law and legislation</subfield><subfield code=\"z\">United States.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Abolitionists</subfield><subfield code=\"z\">United States.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Antislavery movements</subfield><subfield code=\"z\">United States.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"651\"><subfield code=\"a\">United States</subfield><subfield code=\"x\">Politics and government</subfield><subfield code=\"y\">1849-1853.</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"700\"><subfield code=\"a\">Moody, Charles C. P.</subfield><subfield code=\"q\">(Charles Cotesworth Pinckney),</subfield><subfield code=\"d\">-1869,</subfield><subfield code=\"e\">printer.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"752\"><subfield code=\"a\">United States</subfield><subfield code=\"b\">Massachusetts</subfield><subfield code=\"d\">Boston.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"998\"><subfield code=\"c\">MiU-C OKL 2023-12-29</subfield></datafield></record>"
+  ]
+}
