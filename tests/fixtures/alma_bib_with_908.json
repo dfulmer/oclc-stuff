@@ -1,36 +1,36 @@
-    {
-      "mms_id": "99187911099306381",
-      "record_format": "marc21",
-      "linked_record_id": {},
-      "title": "Four bedroom houses.",
-      "author": "Small House Planning Bureau,",
-      "place_of_publication": "St. Cloud, Minnesota ; St. John, New Brunswick :",
-      "date_of_publication": "[between 1950 and 1959?]",
-      "publisher_const": "Small House Planning Bureau,",
-      "holdings": {
-        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187911099306381/holdings"
-      },
-      "created_by": "diazmic",
-      "created_date": "2024-01-10Z",
-      "last_modified_by": "System",
-      "last_modified_date": "2024-11-05Z",
-      "suppress_from_publishing": "false",
-      "suppress_from_external_search": "false",
-      "suppress_from_metadoor": "false",
-      "rank": "59",
-      "sync_with_oclc": "BIBS",
-      "sync_with_libraries_australia": "NONE",
-      "originating_system": "BACKSTAGE",
-      "originating_system_id": "99187911099306381",
-      "cataloging_level": {
-        "value": "00",
-        "desc": "Default Level"
-      },
-      "brief_level": {
-        "value": "05",
-        "desc": "05"
-      },
-      "anies": [
-        "<record><leader>01015nam a2200265 i 4500</leader><controlfield tag=\"001\">99187911099306381</controlfield><controlfield tag=\"005\">20241104161319.0</controlfield><controlfield tag=\"008\">240110q19501959mnuae    c    000 0 eng d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">MiU</subfield><subfield code=\"b\">eng</subfield><subfield code=\"e\">rda</subfield><subfield code=\"c\">MiU</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"043\"><subfield code=\"a\">n-us---</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"099\"><subfield code=\"a\">N 7208 .S6283 195-</subfield></datafield><datafield ind1=\"2\" ind2=\" \" tag=\"110\"><subfield code=\"a\">Small House Planning Bureau,</subfield><subfield code=\"e\">issuing body.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Four bedroom houses.</subfield></datafield><datafield ind1=\" \" ind2=\"1\" tag=\"264\"><subfield code=\"a\">St. Cloud, Minnesota ;</subfield><subfield code=\"a\">St. John, New Brunswick :</subfield><subfield code=\"b\">Small House Planning Bureau,</subfield><subfield code=\"c\">[between 1950 and 1959?]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">40 unnumbered pages :</subfield><subfield code=\"b\">designs, plans ;</subfield><subfield code=\"c\">27 cm</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">text</subfield><subfield code=\"b\">txt</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">still image</subfield><subfield code=\"b\">sti</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"337\"><subfield code=\"a\">unmediated</subfield><subfield code=\"b\">n</subfield><subfield code=\"2\">rdamedia</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"338\"><subfield code=\"a\">volume</subfield><subfield code=\"b\">nc</subfield><subfield code=\"2\">rdacarrier</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Comb binding.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">AAEL: Stamp on cover: Geib-Janni Lumber Co., New Ulm, Minn.</subfield></datafield><datafield ind1=\"2\" ind2=\"0\" tag=\"610\"><subfield code=\"a\">Small House Planning Bureau</subfield><subfield code=\"v\">Catalogs.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Architecture, Domestic</subfield><subfield code=\"z\">United States</subfield><subfield code=\"v\">Designs and plans</subfield><subfield code=\"v\">Catalogs.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"908\"><subfield code=\"a\">AuthComplete 2024-11-04</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"998\"><subfield code=\"c\">nrobins-rdu FullCatMono 20240129 AAEL</subfield></datafield></record>"
-      ]
-    }
+{
+  "mms_id": "99187911099306381",
+  "record_format": "marc21",
+  "linked_record_id": {},
+  "title": "Four bedroom houses.",
+  "author": "Small House Planning Bureau,",
+  "place_of_publication": "St. Cloud, Minnesota ; St. John, New Brunswick :",
+  "date_of_publication": "[between 1950 and 1959?]",
+  "publisher_const": "Small House Planning Bureau,",
+  "holdings": {
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99187911099306381/holdings"
+  },
+  "created_by": "diazmic",
+  "created_date": "2024-01-10Z",
+  "last_modified_by": "System",
+  "last_modified_date": "2024-11-05Z",
+  "suppress_from_publishing": "false",
+  "suppress_from_external_search": "false",
+  "suppress_from_metadoor": "false",
+  "rank": "59",
+  "sync_with_oclc": "BIBS",
+  "sync_with_libraries_australia": "NONE",
+  "originating_system": "BACKSTAGE",
+  "originating_system_id": "99187911099306381",
+  "cataloging_level": {
+    "value": "00",
+    "desc": "Default Level"
+  },
+  "brief_level": {
+    "value": "05",
+    "desc": "05"
+  },
+  "anies": [
+    "<record><leader>01015nam a2200265 i 4500</leader><controlfield tag=\"001\">99187911099306381</controlfield><controlfield tag=\"005\">20241104161319.0</controlfield><controlfield tag=\"008\">240110q19501959mnuae    c    000 0 eng d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">MiU</subfield><subfield code=\"b\">eng</subfield><subfield code=\"e\">rda</subfield><subfield code=\"c\">MiU</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"043\"><subfield code=\"a\">n-us---</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"099\"><subfield code=\"a\">N 7208 .S6283 195-</subfield></datafield><datafield ind1=\"2\" ind2=\" \" tag=\"110\"><subfield code=\"a\">Small House Planning Bureau,</subfield><subfield code=\"e\">issuing body.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Four bedroom houses.</subfield></datafield><datafield ind1=\" \" ind2=\"1\" tag=\"264\"><subfield code=\"a\">St. Cloud, Minnesota ;</subfield><subfield code=\"a\">St. John, New Brunswick :</subfield><subfield code=\"b\">Small House Planning Bureau,</subfield><subfield code=\"c\">[between 1950 and 1959?]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">40 unnumbered pages :</subfield><subfield code=\"b\">designs, plans ;</subfield><subfield code=\"c\">27 cm</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">text</subfield><subfield code=\"b\">txt</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">still image</subfield><subfield code=\"b\">sti</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"337\"><subfield code=\"a\">unmediated</subfield><subfield code=\"b\">n</subfield><subfield code=\"2\">rdamedia</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"338\"><subfield code=\"a\">volume</subfield><subfield code=\"b\">nc</subfield><subfield code=\"2\">rdacarrier</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Comb binding.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">AAEL: Stamp on cover: Geib-Janni Lumber Co., New Ulm, Minn.</subfield></datafield><datafield ind1=\"2\" ind2=\"0\" tag=\"610\"><subfield code=\"a\">Small House Planning Bureau</subfield><subfield code=\"v\">Catalogs.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Architecture, Domestic</subfield><subfield code=\"z\">United States</subfield><subfield code=\"v\">Designs and plans</subfield><subfield code=\"v\">Catalogs.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"908\"><subfield code=\"a\">AuthComplete 2024-11-04</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"998\"><subfield code=\"c\">nrobins-rdu FullCatMono 20240129 AAEL</subfield></datafield></record>"
+  ]
+}
